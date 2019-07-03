@@ -24,7 +24,7 @@ pipelines:
                 AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
                 AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
                 AWS_DEFAULT_REGION: 'eu-central-1'
-                S3_BUCKET: 'sber-shchukin'
+                S3_BUCKET: $AWS_BUCKET_NAME
                 LOCAL_PATH: 'dist'
                 ACL: 'public-read'
                 CACHE_CONTROL: 'max-age=3600'
