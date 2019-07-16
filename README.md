@@ -1,4 +1,4 @@
-# SilkWay
+# Project name
 
 ## CHECKLIST
 
