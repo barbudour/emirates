@@ -1,0 +1,51 @@
+cache:
+  untracked: true
+  paths:
+    - node_modules
+
+stages:
+  - build
+  - deploy
+  - prod
+
+build-dev:  
+   image: node:10.15.0 
+   stage: build  
+   only:    
+      - master  
+   script:
+      - export NODE_ENV=development
+      - yarn
+      - yarn build 
+   artifacts:    
+      paths:
+         - dist/    
+      expire_in: 1 hour
+      
+deploy-dev:  
+   image: python:latest  
+   stage: deploy  
+   only:    
+      - master  
+   script:    
+      - pip install awscli    
+      - aws s3 sync ./dist s3://$AWS_BUCKET_NAME --acl public-read --delete --follow-symlinks --quiet
+build-prod:  
+   image: buildkite/puppeteer 
+   stage: prod  
+   only:    
+      - release  
+   script:
+      - yarn
+      - yarn build 
+   artifacts:    
+      paths:
+         - dist/    
+      expire_in: 1 hour
+deploy-prod:  
+   image: cptponk/git-ftp 
+   stage: prod  
+   only:    
+      - release  
+   script:    
+      - git ftp push --auto-init --user $FTP_USERNAME --passwd $FTP_PASSWORD --syncroot dist/  "ftp://$FTP_SERVER_AND_FOLDER"  
