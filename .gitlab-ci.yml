@@ -6,11 +6,10 @@ cache:
 stages:
   - build
   - deploy
-  - prod
 
 build-dev:  
    image: node:10.15.0 
-   stage: build  
+   stage: build
    only:    
       - master  
    script:
@@ -22,17 +21,18 @@ build-dev:
          - dist/    
       expire_in: 1 hour
       
-deploy-dev:  
-   image: python:latest  
-   stage: deploy  
+deploy-dev:
+   variables:
+    CI_DEBUG_TRACE: "true"  
+   image: xueshanf/awscli
+   stage: deploy
    only:    
       - master  
-   script:    
-      - pip install awscli    
-      - aws s3 sync ./dist s3://$AWS_BUCKET_NAME --acl public-read --delete --follow-symlinks --quiet
+   script:  
+      - aws s3 sync ./dist s3://$AWS_BUCKET_NAME/ --acl public-read --delete --follow-symlinks
 build-prod:  
    image: buildkite/puppeteer 
-   stage: prod  
+   stage: build
    only:    
       - release  
    script:
@@ -44,7 +44,7 @@ build-prod:
       expire_in: 1 hour
 deploy-prod:  
    image: cptponk/git-ftp 
-   stage: prod  
+   stage: deploy  
    only:    
       - release  
    script:    
