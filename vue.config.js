@@ -1,5 +1,6 @@
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const path = require('path')
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   chainWebpack: config => {
@@ -21,17 +22,50 @@ module.exports = {
   productionSourceMap: process.env.NODE_ENV == 'production' ? false : true,
   transpileDependencies: [],
   configureWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
+    let plugins = []
 
-      return {
-        plugins: [
-          new PrerenderSpaPlugin({
-            staticDir: path.resolve(__dirname, 'dist'),
-            routes: ['/'],
-          }),
-        ],
-      }
+    if (process.env.NODE_ENV === 'production') {
+      plugins.push(new PrerenderSpaPlugin({
+        staticDir: path.resolve(__dirname, 'dist'),
+        routes: ['/'],
+      }))
     }
+
+    plugins.push(new FaviconsWebpackPlugin({
+      // Your source logo
+      logo: './public/favicon_source.png',
+      // The prefix for all image files (might be a folder or a name)
+      prefix: 'icons-[hash]/',
+      // Emit all stats of the generated icons
+      emitStats: false,
+      // The name of the json containing all favicon information
+      statsFilename: 'iconstats-[hash].json',
+      // Generate a cache file with control hashes and
+      // don't rebuild the favicons until those hashes change
+      persistentCache: true,
+      // Inject the html into the html-webpack-plugin
+      inject: true,
+      // favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+      background: '#fff',
+      // which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: true,
+        yandex: true,
+        windows: true
+      }
+    }))
+
+    return {
+      plugins: plugins
+    }
+
   }
 }
 
