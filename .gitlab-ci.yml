@@ -1,7 +1,8 @@
 cache:
   untracked: true
+  key: "$AWS_BUCKET_NAME"
   paths:
-    - node_modules
+    - node_modules/
 
 stages:
   - build
@@ -22,8 +23,7 @@ build-dev:
       expire_in: 1 hour
       
 deploy-dev:
-   variables:
-    CI_DEBUG_TRACE: "true"  
+   cache: {}
    image: xueshanf/awscli
    stage: deploy
    only:    
@@ -44,6 +44,7 @@ build-prod:
       expire_in: 1 hour
 deploy-prod:  
    image: cptponk/git-ftp 
+   cache: {}
    stage: deploy  
    only:    
       - release  
