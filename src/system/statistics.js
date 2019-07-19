@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import VueYandexMetrika from 'vue-yandex-metrika'
-import router from './router'
-import settings from './settings'
+import router from '../router'
 
 const isProd = process.env.NODE_ENV === 'production'
 function Init() {
 
   Vue.use(VueAnalytics, {
-    id: settings.ids.gaID,
+    id: process.env.GA_ID || 'UA-00000000-00',
     router,
     commands: {
       click(category, action, label) {
@@ -22,7 +21,7 @@ function Init() {
 
   })
   Vue.use(VueYandexMetrika, {
-    id: settings.ids.yaID,
+    id: +process.env.YM_ID || 12345678,
     router: router,
     env: process.env.NODE_ENV,
     debug: !isProd,
@@ -35,4 +34,15 @@ function Init() {
     }
   })
 }
-export { Init };
+
+var on_load_mixin = {
+  mounted() {
+    if (process.env.PAGE_LOADED) {
+      let v = this;
+      window.addEventListener("load", function () {
+        v.$ga.event("internal", "load", "page_loaded");
+      });
+    }
+  }
+}
+export { Init, on_load_mixin };
