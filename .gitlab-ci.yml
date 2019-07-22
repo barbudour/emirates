@@ -31,7 +31,7 @@ deploy-dev:
    script:  
       - aws s3 sync ./dist s3://$AWS_BUCKET_NAME/ --acl public-read --delete --follow-symlinks
 build-prod:  
-   image: buildkite/puppeteer 
+   image: lllelll/node_pupeeteer_bzip2_tar 
    stage: build
    only:    
       - release  
