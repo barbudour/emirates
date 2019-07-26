@@ -6,38 +6,48 @@ import router from '../router'
 const isProd = process.env.NODE_ENV === 'production'
 function Init() {
 
-  Vue.use(VueAnalytics, {
-    id: process.env.GA_ID || 'UA-00000000-00',
-    router,
-    commands: {
-      click(category, action, label) {
-        this.$ga.event(category, action, label)
-      }
-    },
-    debug: {
-      enabled: !isProd,
-      sendHitTask: isProd
-    },
+  const YM_ID = +process.env.VUE_APP_YM_ID || 12345678;
+  const GA_ID = process.env.VUE_APP_GA_ID || 'UA-00000000-00';
 
-  })
-  Vue.use(VueYandexMetrika, {
-    id: +process.env.YM_ID || 12345678,
-    router: router,
-    env: process.env.NODE_ENV,
-    debug: !isProd,
-    scriptSrc: 'https://mc.yandex.ru/metrika/tag.js',
-    options: {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-      webvisor: true,
-    }
-  })
+  if ((isProd && GA_ID != "UA-00000000-00") || !isProd) {
+    Vue.use(VueAnalytics, {
+      id: GA_ID,
+      router,
+      commands: {
+        click(category, action, label) {
+          this.$ga.event(category, action, label)
+        }
+      },
+      debug: {
+        enabled: !isProd,
+        sendHitTask: isProd
+      },
+
+    })
+  }
+  if ((isProd && YM_ID != 12345678) || !isProd) {
+    Vue.use(VueYandexMetrika, {
+      id: YM_ID,
+      router: router,
+      env: process.env.NODE_ENV,
+      debug: !isProd,
+      scriptSrc: 'https://mc.yandex.ru/metrika/tag.js',
+      options: {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      }
+    })
+  }
+  if (!isProd) console.log("YM_ID: " + YM_ID)
 }
+
+
 
 var on_load_mixin = {
   mounted() {
-    if (process.env.PAGE_LOADED) {
+    if (process.env.VUE_APP_PAGE_LOADED == "true") {
       let v = this;
       window.addEventListener("load", function () {
         v.$ga.event("internal", "load", "page_loaded");
