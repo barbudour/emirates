@@ -9,12 +9,12 @@ stages:
   - deploy
 
 build-dev:  
-   image: node:10.15.0 
+   image: lllelll/node_pupeeteer_bzip2_tar
    stage: build
    only:    
       - master  
    script:
-      - export NODE_ENV=development
+      - export NODE_ANALYTICS=development
       - yarn
       - yarn build 
    artifacts:    
@@ -35,7 +35,8 @@ build-prod:
    stage: build
    only:    
       - release  
-   script:
+   script:      
+      - export NODE_ANALYTICS=production
       - yarn
       - yarn build 
    artifacts:    

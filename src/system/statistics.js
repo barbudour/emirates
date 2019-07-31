@@ -3,7 +3,7 @@ import VueAnalytics from 'vue-analytics'
 import VueYandexMetrika from 'vue-yandex-metrika'
 import router from '../router'
 
-const isProd = process.env.NODE_ENV === 'production'
+const isProd = process.env.NODE_ANALYTICS === 'production'
 function Init() {
 
   const YM_ID = +process.env.VUE_APP_YM_ID || 12345678;
@@ -40,7 +40,9 @@ function Init() {
       }
     })
   }
+  /*eslint-disable */
   if (!isProd) console.log("YM_ID: " + YM_ID)
+  /*eslint-enable */
 }
 
 

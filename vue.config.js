@@ -15,6 +15,11 @@ module.exports = {
       .end()
       .use('vue-svg-loader')
       .loader('vue-svg-loader')
+
+      config.plugin('define').tap(definitions => {
+        definitions[0]['process.env']['NODE_ANALYTICS'] = '"development"'
+        return definitions
+      })
   },
   css: {
     sourceMap: process.env.NODE_ENV == 'production' ? false : true
