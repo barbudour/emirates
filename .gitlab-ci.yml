@@ -14,7 +14,7 @@ build-dev:
    only:    
       - master  
    script:
-      - export NODE_ANALYTICS=development
+      - export VUE_APP_ANALYTICS=development
       - yarn
       - yarn build 
    artifacts:    
@@ -36,7 +36,7 @@ build-prod:
    only:    
       - release  
    script:      
-      - export NODE_ANALYTICS=production
+      - export VUE_APP_ANALYTICS=production
       - yarn
       - yarn build 
    artifacts:    
