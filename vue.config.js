@@ -1,7 +1,7 @@
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const path = require('path')
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-
+let data = require('./data.js')
 module.exports = {
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
@@ -16,9 +16,15 @@ module.exports = {
       .use('vue-svg-loader')
       .loader('vue-svg-loader')
 
-      config.plugin('define').tap(definitions => {
-        definitions[0]['process.env']['NODE_ANALYTICS'] = '"development"'
-        return definitions
+    config.plugin('define').tap(definitions => {
+      definitions[0]['process.env']['NODE_ANALYTICS'] = '"development"'
+      return definitions
+    })
+    config
+      .plugin('html')
+      .tap(args => {
+        args[0].templateParameters = data
+        return args
       })
   },
   css: {
@@ -28,11 +34,20 @@ module.exports = {
   transpileDependencies: [],
   configureWebpack: config => {
     let plugins = []
+    
+    var routes  = []
+    var r = require ('./src/router')
+    r.default.options.routes.forEach(el=> routes.push(el.path))
 
     if (process.env.NODE_ENV === 'production') {
       plugins.push(new PrerenderSpaPlugin({
         staticDir: path.resolve(__dirname, 'dist'),
-        routes: ['/'],
+        routes: routes,
+        renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
+          timeout: 60000,
+          renderAfterTime: 10000,
+          maxConcurrentRoutes: 10
+        })
       }))
     }
 

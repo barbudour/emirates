@@ -5,22 +5,55 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta property="og:title" content="Заголовок">
-  <meta property="og:description" content="Описание.">
-  <meta property="og:image" content="http://example.com/img.jpg">
+  <meta name="description" content="<%=process.env.VUE_APP_DECTIPTION %>" />
+  <meta property="og:title" content="<%=process.env.VUE_APP_SHARE_TITLE%>">
+  <meta property="og:description" content="<%=process.env.VUE_APP_SHARE_DECTIPTION%>">
+  <meta property="og:image" content="/<%-share.default_img%>">
   <meta property="og:image:width" content="968">
   <meta property="og:image:height" content="504">
   <meta property="og:type" content="article" />
   <meta property="og:url" content="" />
-  <meta property="og:site_name" content="Название сайта">
+  <meta property="og:site_name" content="<%=process.env.VUE_APP_TITLE%>">
   <meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:image" content="/share.jpg" />
-  <title>title</title>
+  <meta name="twitter:image" content="/<%-share.default_img%>" />
+  <title><%=process.env.VUE_APP_TITLE %></title>
 </head>
 
 <body>
+  <% if ((process.env.VUE_APP_ANALYTICS === 'production' && process.env.VUE_APP_RMBT_ID != 12345678) || !process.env.VUE_APP_ANALYTICS === 'production') { %>
+  <!-- Top100 (Kraken) Counter -->
+  <script>
+    (function (w, d, c) {
+      (w[c] = w[c] || []).push(function () {
+        var options = {
+          project: <%=process.env.VUE_APP_RMBT_ID || 12345678 %>,
+      };
+      try {
+        w.top100Counter = new top100(options);
+      } catch (e) { }
+    });
+    var n = d.getElementsByTagName("script")[0],
+      s = d.createElement("script"),
+      f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src =
+      (d.location.protocol == "https:" ? "https:" : "https:") +
+      "//st.top100.ru/top100/top100.js";
+
+    if (w.opera == "[object Opera]") {
+      d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+}) (window, document, "_top100q");
+  </script>
   <noscript>
-    <strong>We're sorry but title doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    <img src="//counter.rambler.ru/top100.cnt?pid=6731213" alt="Топ-100" />
+  </noscript>
+  <!-- END Top100 (Kraken) Counter -->
+  <% } %>
+  <noscript>
+    <strong>We're sorry but title doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->

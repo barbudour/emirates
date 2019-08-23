@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+var router = require('./router')
 const Stat = require('./system/statistics')
 Vue.config.productionTip = false
 
