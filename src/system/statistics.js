@@ -29,7 +29,7 @@ function Init() {
     Vue.use(VueYandexMetrika, {
       id: YM_ID,
       router: router,
-      env: process.env.NODE_ENV,
+      env: isProd? 'production' : 'development',
       debug: !isProd,
       scriptSrc: 'https://mc.yandex.ru/metrika/tag.js',
       options: {

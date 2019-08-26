@@ -43,6 +43,13 @@ module.exports = {
       plugins.push(new PrerenderSpaPlugin({
         staticDir: path.resolve(__dirname, 'dist'),
         routes: routes,
+        postProcessHtml: function (context) {
+          return context.html.replace(
+            // strip all script tags
+            /<script\b[^<]*(tag|analytics).*<\/script>/gmi,
+            '' 
+          )
+        },
         renderer: new PrerenderSpaPlugin.PuppeteerRenderer({
           timeout: 60000,
           renderAfterTime: 10000,
