@@ -1,6 +1,7 @@
 const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const path = require('path')
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const esmImport = require('esm')(module);
 let data = require('./data.js')
 module.exports = {
   chainWebpack: config => {
@@ -31,13 +32,13 @@ module.exports = {
     sourceMap: process.env.NODE_ENV == 'production' ? false : true
   },
   productionSourceMap: process.env.NODE_ENV == 'production' ? false : true,
-  transpileDependencies: [],
+  transpileDependencies: ['@cookieseater/vue-yandex-share'],
   configureWebpack: config => {
     let plugins = []
     
-    var routes  = []
-    var r = require ('./src/router')
-    r.default.options.routes.forEach(el=> routes.push(el.path))
+    var routes  = ['/']
+    var r = esmImport('./src/router')
+     r.default.options.routes.forEach(el=> routes.push(el.path))
 
     if (process.env.NODE_ENV === 'production') {
       plugins.push(new PrerenderSpaPlugin({

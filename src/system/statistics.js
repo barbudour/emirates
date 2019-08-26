@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import VueYandexMetrika from 'vue-yandex-metrika'
-var router = require('../router')
+import router from '../router';
 
 const isProd = process.env.VUE_APP_ANALYTICS === 'production'
 function Init() {
