@@ -5,18 +5,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="<%=process.env.VUE_APP_DESCRIPTION %>" />
-  <meta property="og:title" content="<%=process.env.VUE_APP_SHARE_TITLE%>">
-  <meta property="og:description" content="<%=process.env.VUE_APP_SHARE_DESCRIPTION%>">
+  <meta property="og:title" content="<%-share.title%>">
+  <meta property="og:description" content="<%-share.description%>">
   <meta property="og:image" content="<%-share.default_img%>">
   <meta property="og:image:width" content="968">
   <meta property="og:image:height" content="504">
   <meta property="og:type" content="article" />
   <meta property="og:url" content="" />
-  <meta property="og:site_name" content="<%=process.env.VUE_APP_TITLE%>">
+  <meta property="og:site_name" content="<%-title%>">
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="<%-share.default_img%>" />
-  <title><%=process.env.VUE_APP_TITLE %></title>
+  <title><%-title%></title>
 </head>
 
 <body>
