@@ -1,4 +1,4 @@
-module.exports = {
+const data = {
     title: "Заголовок страницы",
     share: {
         default_img: "/share.jpg",
@@ -23,5 +23,15 @@ module.exports = {
             // }
         }
 
-    }
+    },
+
+    allPrerenderRoutes: [ //without dynamic_shares
+        '/',
+    ]
+
 }
+
+
+data.allPrerenderRoutes = data.allPrerenderRoutes.concat(Object.keys(data.share.dynamic_shares).map(el => '/' + el))
+
+export default data

@@ -2,7 +2,7 @@ const PrerenderSpaPlugin = require('prerender-spa-plugin')
 const path = require('path')
 let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const esmImport = require('esm')(module);
-let data = require('./data.js')
+const data = esmImport('./data.js')
 module.exports = {
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
@@ -24,7 +24,7 @@ module.exports = {
     config
       .plugin('html')
       .tap(args => {
-        args[0].templateParameters = data
+        args[0].templateParameters = data.default
         return args
       })
   },
@@ -35,11 +35,8 @@ module.exports = {
   transpileDependencies: ['@cookieseater/vue-yandex-share'],
   configureWebpack: config => {
     let plugins = []
-    
-    var routes  = ['/']
-    var r = esmImport('./src/router')
-     r.default.options.routes.forEach(el=> routes.push(el.path))
-
+    var routes = []
+    data.default.allPrerenderRoutes.forEach(el => routes.push(el))
     if (process.env.NODE_ENV === 'production') {
       plugins.push(new PrerenderSpaPlugin({
         staticDir: path.resolve(__dirname, 'dist'),
@@ -47,8 +44,8 @@ module.exports = {
         postProcessHtml: function (context) {
           return context.html.replace(
             // strip all script tags
-            /<script.*(tag|analytics|top100).*><\/script>/gmi,
-            '' 
+            /<script.*(tag|analytics|top100|fbevents).*><\/script>/gmi,
+            ''
           )
         },
         renderer: new PrerenderSpaPlugin.PuppeteerRenderer({

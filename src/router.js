@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const data = require('../data')
+import data from '../data'
 
 Vue.use(Router)
 
