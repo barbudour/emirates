@@ -2,12 +2,15 @@ import Vue from 'vue'
 import VueAnalytics from 'vue-analytics'
 import VueYandexMetrika from 'vue-yandex-metrika'
 import router from '../router';
+import data from '../../data'
+
+
 
 const isProd = process.env.VUE_APP_ANALYTICS === 'production'
 function Init() {
 
-  const YM_ID = +process.env.VUE_APP_YM_ID || 12345678;
-  const GA_ID = process.env.VUE_APP_GA_ID || 'UA-00000000-00';
+  const YM_ID = +data.statistics.YM_ID || 12345678;
+  const GA_ID = data.statistics.GA_ID || 'UA-00000000-00';
 
   if ((isProd && GA_ID != "UA-00000000-00") || !isProd) {
     Vue.use(VueAnalytics, {
@@ -49,7 +52,7 @@ function Init() {
 
 var on_load_mixin = {
   mounted() {
-    if (process.env.VUE_APP_PAGE_LOADED == "true") {
+    if (data.statistics.PAGE_LOAD_EVENT) {
       let v = this;
       window.addEventListener("load", function () {
         v.$ga.event("internal", "load", "page_loaded");

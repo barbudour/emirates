@@ -19,13 +19,13 @@
 </head>
 
 <body>
-  <% if ((process.env.VUE_APP_ANALYTICS === 'production' && process.env.VUE_APP_RMBT_ID != 12345678) || !process.env.VUE_APP_ANALYTICS === 'production') { %>
+  <% if ((process.env.VUE_APP_ANALYTICS === 'production' && statistics.RMBT_ID != 12345678) || !process.env.VUE_APP_ANALYTICS === 'production') { %>
     <!-- Top100 (Kraken) Counter -->
     <script>
       (function (w, d, c) {
         (w[c] = w[c] || []).push(function () {
           var options = {
-            project: <%=process.env.VUE_APP_RMBT_ID || 12345678 %>,
+            project: <%-statistics.RMBT_ID || 12345678 %>,
         };
         try {
           w.top100Counter = new top100(options);
@@ -46,7 +46,7 @@
   }) (window, document, "_top100q");
     </script>
     <noscript>
-      <img src="//counter.rambler.ru/top100.cnt?pid=<%=process.env.VUE_APP_RMBT_ID || 12345678 %>" alt="Топ-100" />
+      <img src="//counter.rambler.ru/top100.cnt?pid=<%-statistics.RMBT_ID || 12345678 %>" alt="Топ-100" />
     </noscript>
     <!-- END Top100 (Kraken) Counter -->
     <% } %>
