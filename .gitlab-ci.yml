@@ -1,40 +1,21 @@
 cache:
-  untracked: true
-  key: "$AWS_BUCKET_NAME"
   paths:
     - node_modules/
-
-stages:
-  - build
+    
+variables:
+  PROJECT_NAME: dominicana.afisha.ru
+  GITLAB_REGISTRY: gitlab-special.rambler-co.ru:5000
+  REGISTRY_PATH: andreichenko
+  IMAGE_TAG: ${GITLAB_REGISTRY}/${REGISTRY_PATH}/${PROJECT_NAME}
+types:
+  - build-app
+  - build-docker
+  - test
   - deploy
 
-build-dev:  
-   image: lllelll/node_pupeeteer_bzip2_tar
-   stage: build
-   only:    
-      - master  
-   script:
-      - export VUE_APP_ANALYTICS=development
-      - yarn
-      - yarn build 
-   artifacts:    
-      paths:
-         - dist/    
-      expire_in: 1 hour
-      
-deploy-dev:
-   cache: {}
-   image: xueshanf/awscli
-   stage: deploy
-   only:    
-      - master  
-   script:  
-      - aws s3 sync ./dist s3://$AWS_BUCKET_NAME/ --acl public-read --delete --follow-symlinks
 build-prod:  
    image: lllelll/node_pupeeteer_bzip2_tar 
-   stage: build
-   only:    
-      - release  
+   stage: build-app
    script:      
       - export VUE_APP_ANALYTICS=production
       - yarn
@@ -42,12 +23,50 @@ build-prod:
    artifacts:    
       paths:
          - dist/    
-      expire_in: 1 hour
-deploy-prod:  
-   image: cptponk/git-ftp 
-   cache: {}
-   stage: deploy  
-   only:    
-      - release  
-   script:    
-      - git ftp push --auto-init --user $FTP_USERNAME --passwd $FTP_PASSWORD --syncroot dist/  "ftp://$FTP_SERVER_AND_FOLDER"  
+
+build_image:
+  stage: build-docker
+  when: on_success
+  script:
+    - echo ${REGISTRY_TOKEN} | docker login --username ${REGISTRY_USER} --password-stdin ${GITLAB_REGISTRY}
+    - docker build -t ${IMAGE_TAG}:${CI_PIPELINE_ID} .
+    - docker version
+    - docker push ${IMAGE_TAG}:${CI_PIPELINE_ID}
+    - docker logout ${GITLAB_REGISTRY}
+
+vulneable_check:
+  stage: test
+  when: manual
+  script:
+    - apk add git
+    - trivy --quiet ${IMAGE_TAG}:${CI_PIPELINE_ID}
+
+deploy:
+  stage: deploy
+  when: on_success
+  variables:
+    NAMESPACE: andreichenko
+    RELEASE: dominicana
+    APP_CHART: /common_chart.tgz
+    INGRESS_HOST: dominicana.afisha.ru
+  before_script:
+    - mkdir -p .kube
+    - echo ${KUBE_CONFIG} | base64 -d > .kube/config
+    - export KUBECONFIG=.kube/config
+  after_script:
+    - rm -rf .kube
+  script:
+    - >-
+      helm upgrade
+      --install
+      --force
+      --wait
+      --tiller-namespace=${NAMESPACE}
+      --namespace=${NAMESPACE} ${RELEASE} ${APP_CHART}
+      --set "image.repository=${IMAGE_TAG}"
+      --set "image.tag=${CI_PIPELINE_ID}"
+      --set "ingress.hosts[0]=${INGRESS_HOST}"
+      --set "resources.limits.cpu=${LIMIT_CPU}"
+      --set "resources.limits.memory=${LIMIT_MEM}"
+      --set "resources.requests.cpu=${REQUEST_CPU}"
+      --set "resources.requests.memory=${REQUEST_MEM}"
