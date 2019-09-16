@@ -46,8 +46,7 @@ deploy-prod:
       - chmod 700 ~/.ssh/id_rsa
       - eval "$(ssh-agent -s)"
       - ssh-add ~/.ssh/id_rsa 
-      - ssh-keyscan -H 'gitlab-special.rambler-co.ru' >> ~/.ssh/known_hosts
-      - ssh-keyscan -H 'gitlab.com' >> ~/.ssh/known_hosts
+      - echo "$RM_FP" >> ~/.ssh/known_hosts
    script:    
       - git pull --no-edit $PROD_GIT master --allow-unrelated-histories
-      - git push $PROD_GIT master
+      - git push $PROD_GIT HEAD:master
