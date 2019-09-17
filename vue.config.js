@@ -44,7 +44,7 @@ module.exports = {
         postProcessHtml: function (context) {
           return context.html.replace(
             // strip all script tags
-            /<script.*(tag|analytics|top100|fbevents).*><\/script>/gmi,
+            /<script.*(tag|analytics|top100|fbevents).*?><\/script>/gmi,
             ''
           )
         },
