@@ -41,6 +41,7 @@ deploy-prod:
       - git config --global user.email "sergey.andreychenko@gmail.com"
       - git config --global user.name "Sergey Andreychenko"
       - echo -n $VPN_PIN$(oathtool --totp -b $VPN_SECRET) | openconnect -b --user $VPN_LOGIN --authgroup=User $VPN_SERVER
+      - sleep 30
       - mkdir -p ~/.ssh
       - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
       - chmod 700 ~/.ssh/id_rsa
