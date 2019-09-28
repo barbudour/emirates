@@ -17,9 +17,7 @@ if (Object.keys(data.share.dynamic_shares).length > 0) {
       name: el
     })
   })
-
 }
-
 
 const router = new Router({
   mode: 'history',

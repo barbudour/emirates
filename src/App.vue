@@ -1,5 +1,5 @@
-<template>
-  <div id="app"></div>
+<template lang="pug">
+  main.main
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style lang="stylus">
-
+.main
+  pos relative
 </style>
   
