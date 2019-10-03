@@ -1,0 +1,24 @@
+.button {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+
+	&__big {
+		padding: vw(16) vw(40);
+		border-radius: vw(5);
+		background-color: rgb(214, 24, 31);
+		color: #ffffff;
+		font-size: vw(18);
+		font-family: "Helvetica Neue", "Arial";
+	}
+	
+	&__normal {
+		padding: vw(15) vw(20);
+		border-radius: vw(5);
+		background-color: transparent;
+		border: 2px solid #ffffff;
+		color: #ffffff;
+		font-size: vw(14);
+		font-family: "Helvetica Neue", "Arial";
+	}
+}

@@ -1,5 +1,7 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <router-view/>
+  </div>
 </template>
 
 <script>
@@ -10,7 +12,11 @@ export default {
 };
 </script>
 
-<style lang="stylus">
-
+<style lang="scss">
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 </style>
   
