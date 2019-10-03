@@ -1,14 +1,20 @@
 <template>
 	<div class="search">
 		<div class="search__content">
-			<h1 class="search__title">{{title}}</h1>
-			<h2 class="search__lead">{{lead}}</h2>
-			<div class="search__categories">
+			<h1 class="search__title" v-if="!changeCategory" v-html="title"></h1>
+			<h1 class="search__title" v-else v-html="titleTypes"></h1>
+			<h2 class="search__lead" v-if="!changeCategory" v-html="lead"></h2>
+			<h2 class="search__lead" v-else v-html="leadTypes"></h2>
+			<div class="search__categories" v-if="!changeCategory">
 				<a class="search__category button" v-for="(category, index) in categories" :key="index" href="#">{{category.name}}</a>
 			</div>
+			<div class="search__categories" v-else>
+				<a class="search__category button" v-for="(type, index) in types" :key="index" href="#">{{type.name}}</a>
+			</div>
 			<div class="search__buttons">
-				<a href="#" class="button__big button">{{buttonSearch}}</a>
-				<a href="#" class="button__normal button">{{buttonRandom}}</a>
+				<a class="button__big button" @click="changeCategory = !changeCategory" v-if="!changeCategory">{{buttonSearch}}</a>
+				<a class="button__big button" @click="changeCategory = !changeCategory" v-else>{{buttonFlight}}</a>
+				<a class="button__normal button">{{buttonRandom}}</a>
 			</div>
 		</div>
 		<!-- <Social/> -->
@@ -24,15 +30,25 @@ export default {
 	data: function () {
 		return {
 			title: 'Генератор новой жизни',
+			titleTypes: '&nbsp;',
 			lead: 'Какой у вас повод для того, чтобы отправиться в путешествие?',
+			leadTypes: 'С кем вы отправитесь в путешествия?',
 			buttonSearch: 'Далее',
+			buttonFlight: 'Полетели!',
 			buttonRandom: 'Полететь наугад',
 			categories: [
 				{name: 'Свадьба'},
 				{name: 'Переезд'},
 				{name: 'Новая работа'},
 				{name: 'Просто хочу отдохнуть'}
-			]
+			],
+			types: [
+				{name: 'С семьей'},
+				{name: 'С друзьями'},
+				{name: 'В одиночку'},
+				{name: 'Со второй половинкой'}
+			],
+			changeCategory: false
 		}
 	},
 	components: {
@@ -57,7 +73,6 @@ export default {
 
 	&__title {
 		font-size: vw(50);
-		font-family: "Helvetica Neue", "Arial";
 		color: rgb(255, 255, 255);
 		text-transform: uppercase;
 		text-align: center;
@@ -67,7 +82,6 @@ export default {
 
 	&__lead {
 		font-size: vw(20);
-		font-family: "Helvetica Neue", "Arial";
 		color: rgb(255, 255, 255);
 		text-transform: uppercase;
 		text-align: center;
@@ -88,10 +102,8 @@ export default {
 		background-color: rgba(255, 255, 255, 0.1);
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		color: #ffffff;
-		font-family: "Helvetica Neue", "Arial";
 		font-size: vw(16);
 		font-weight: 400;
-		transition: all 0.2s ease-in-out;
 
 		&:hover {
 			background: #ffffff;

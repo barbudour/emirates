@@ -13,10 +13,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/assets/styles/_responsive.scss';
+
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-family: "Helvetica Neue", "Arial";
+}
+
+.container {
+  width: 100%;
+  max-width: vw(880);
 }
 </style>
   

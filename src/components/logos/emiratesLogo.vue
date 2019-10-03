@@ -30,6 +30,7 @@ export default {
 .logo {
 	&__emirates {
 		position: absolute;
+		top: 0;
 		right: vw(40);
 		width: vw(80);
 	}

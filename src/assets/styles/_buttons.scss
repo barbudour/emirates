@@ -2,6 +2,8 @@
 	position: relative;
 	display: inline-block;
 	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
 
 	&__big {
 		padding: vw(16) vw(40);
@@ -9,7 +11,6 @@
 		background-color: rgb(214, 24, 31);
 		color: #ffffff;
 		font-size: vw(18);
-		font-family: "Helvetica Neue", "Arial";
 	}
 	
 	&__normal {
@@ -19,6 +20,5 @@
 		border: 2px solid #ffffff;
 		color: #ffffff;
 		font-size: vw(14);
-		font-family: "Helvetica Neue", "Arial";
 	}
 }

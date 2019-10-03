@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import data from '../data'
 import home from './views/home.vue'
+import maldives from './views/maldives.vue'
 
 Vue.use(Router)
 
@@ -9,6 +10,10 @@ let routes = [
   {
     path: '/',
     component: home
+  },
+  {
+    path: '/maldives',
+    component: maldives
   }
 ];
 

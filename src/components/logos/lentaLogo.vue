@@ -31,11 +31,11 @@ export default {
 		top: vw(40);
 		left: vw(40);
 		width: vw(100);
+		text-align: left;
 	}
 
 	&__subtitle {
 		font-size: vw(10);
-		font-family: "Helvetica Neue", "Arial";
 		color: rgba(255, 255, 255, 0.6);
 		text-transform: uppercase;
 	}

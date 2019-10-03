@@ -9,3 +9,10 @@
 @function vmin($value, $base: 375) {
 	@return $value / $base * 100vmin;
 }
+
+@mixin retina {
+	// stylelint-disable-next-line media-feature-name-no-vendor-prefix
+	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		@content;
+	}
+}
