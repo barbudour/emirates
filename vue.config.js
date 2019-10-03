@@ -96,10 +96,16 @@ module.exports = {
 
 function addStyleResource(rule) {
   rule.use('style-resource')
-    .loader('style-resources-loader')
+    .loader('sass-resources-loader')
     .options({
       patterns: [
         path.resolve(__dirname, './src/assets/styles/imports.styl'),
       ],
+    })
+  rule.use('style-resource')
+    .loader('vue-style-loader', 'css-loader')
+    .options({
+      data: `
+        `
     })
 }
