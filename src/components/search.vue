@@ -17,12 +17,12 @@
 				<a class="button__normal button">{{buttonRandom}}</a>
 			</div>
 		</div>
-		<!-- <Social/> -->
+		<Social/>
 	</div>
 </template>
 
 <script>
-// import Social from '@/components/Social.vue';
+import Social from '@/components/Social.vue';
 
 // @ is an alias to /src
 export default {
@@ -52,7 +52,7 @@ export default {
 		}
 	},
 	components: {
-		// Social
+		Social
 	}
 };
 </script>

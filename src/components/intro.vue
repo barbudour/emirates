@@ -12,11 +12,13 @@
 				<p v-html="lead"></p>
 			</div>
 		</div>
+		<Social/>
 	</div>
 </template>
 
 <script>
 import headBlock from '@/components/headBlock.vue';
+import Social from '@/components/Social.vue';
 
 // @ is an alias to /src
 export default {
@@ -28,7 +30,8 @@ export default {
 		img: String
 	},
 	components: {
-		headBlock
+		headBlock,
+		Social
 	},
 	beforeCreate: function() {
 		document.body.className = "longread";
@@ -74,7 +77,7 @@ export default {
 		opacity: 0.8;
 	}
 
-	&__content {
+	> * {
 		z-index: 1;
 	}
 

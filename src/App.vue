@@ -26,5 +26,30 @@ body {
   width: 100%;
   max-width: vw(880);
 }
+
+blockquote {
+  font-size: vw(30);
+  color: rgb(51, 51, 51);
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1.333;
+  // display: inline;
+  margin: vw(40) 0 vw(34);
+
+  &.quote {
+    &__left {
+      max-width: vw(470);
+      float: left;
+      margin: vw(40) vw(40) vw(34) vw(-80);
+      // display: inline;
+    }
+    &__right {
+      max-width: vw(470);
+      float: right;
+      margin: vw(40) vw(-80) vw(34) vw(40);
+      // display: inline;
+    }
+  }
+}
 </style>
   
