@@ -50,11 +50,11 @@ let routes = [
   //   name: 'C1',
   //   component: () => import('./views/dubai.vue')
   // },
-  // {
-  //   path: '/colombia',
-  //   name: 'C2',
-  //   component: () => import('./views/colombia.vue')
-  // },
+  {
+    path: '/colombia',
+    name: 'C2',
+    component: () => import('./views/colombia.vue')
+  },
   // {
   //   path: '/maldives3',
   //   name: 'C3',
