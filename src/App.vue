@@ -24,6 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-family: "Helvetica Neue", "Arial";
+  overflow-x: hidden;
 }
 
 .container {
