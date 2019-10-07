@@ -26,8 +26,10 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/_responsive.scss';
 .facts {
+	display: flex;
 	position: relative;
 	background: #000000;
+	min-height: vw(660);
 
 	&__bg {
 		width: 100%;

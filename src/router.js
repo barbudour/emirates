@@ -65,11 +65,11 @@ let routes = [
     name: 'C4',
     component: () => import('./views/vietnam2.vue')
   },
-  // {
-  //   path: '/phuket',
-  //   name: 'D2',
-  //   component: () => import('./views/phuket.vue')
-  // },
+  {
+    path: '/phuket',
+    name: 'D2',
+    component: () => import('./views/phuket.vue')
+  },
   // {
   //   path: '/bali3',
   //   name: 'D3',
