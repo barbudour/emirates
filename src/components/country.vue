@@ -2,7 +2,7 @@
 	<div :id="'country__'+country.id">
 		<intro :image="country.image" :title="country.name" :subtitle="country.subtitle" :lead="country.lead"/>
 		<contentCountry :contentCountry="country.content"/>
-		<facts :facts="country.facts"/>
+		<facts :facts="country.facts" :factsBg="country.factsbg"/>
 		<end/>
 	</div>
 </template>

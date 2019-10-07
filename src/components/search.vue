@@ -1,15 +1,15 @@
 <template>
 	<div class="search">
 		<div class="search__content">
-			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOutUp" mode="out-in">
+			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOutUp">
 				<h1 class="search__title animated" id="title" key="categorytitle" v-if="!changeCategory" v-html="title"></h1>
 				<h1 class="search__title animated"  key="typetitle" v-else v-html="titleTypes"></h1>
 			</transition-group>
-			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOutUp" mode="out-in">
+			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOutUp">
 			<h2 class="search__lead animated" id="lead" key="leadcategory" v-if="!changeCategory" v-html="lead"></h2>
 			<h2 class="search__lead animated" key="leadtype" v-else v-html="leadTypes"></h2>
 			</transition-group>
-			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOut" mode="out-in">
+			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOut">
 				<div class="search__categories animated" id="categories" key="categories" v-if="!changeCategory">
 					<a class="search__category button category__first" @click="selectCategory" ref="category" v-for="(category, index) in categories" :category="category.key" v-bind:key="index">{{category.name}}</a>
 				</div>
@@ -18,7 +18,7 @@
 				</div>
 			</transition-group>
 			<div class="search__buttons" id="buttons">
-				<transition-group name="fade" enter-active-class="fadeInRight" leave-active-class="fadeOutLeft" mode="out-in">
+				<transition-group name="fade" enter-active-class="fadeInRight" leave-active-class="fadeOutLeft">
 				<a class="button__big button button__disable animated" id="totypes" key="types" @click="toTypes" v-if="!changeCategory">{{buttonSearch}}</a>
 				<a class="button__big button button__disable animated" id="toflight" key="flight" @click="toFlight" v-else>{{buttonFlight}}</a>
 				</transition-group>
@@ -32,7 +32,7 @@
 
 <script>
 import Social from '@/components/Social.vue';
-import {TweenMax, Power2, TimelineMax} from "gsap/TweenMax";
+import {TweenMax, Power4, TimelineMax} from "gsap/TweenMax";
 
 // @ is an alias to /src
 export default {
@@ -117,9 +117,9 @@ export default {
 			titleSearch = document.querySelector('#title'),
 			leadSearch = document.querySelector('#lead'),
 			categoriesSearch = document.querySelector('#categories'),
-			buttonsSearch = document.querySelector('#buttons'),
-			typesSearch = document.querySelector('#totypes'),
-			randomSearch = document.querySelector('#random');
+			buttonsSearch = document.querySelector('#buttons');
+			// typesSearch = document.querySelector('#totypes'),
+			// randomSearch = document.querySelector('#random')
 
 		var centerElementsDuration = 1.5;
 
@@ -148,6 +148,7 @@ export default {
 	background-image: url('../assets/img/search-bg.jpg');
 	background-size: cover;
 	background-position: center;
+	overflow: hidden;
 
 	&__title {
 		font-size: vw(50);
@@ -223,5 +224,9 @@ export default {
 
 .fade-leave-active, .fade-leave-to, .fade-enter {
 	position: absolute;
+}
+
+.fade-enter {
+	animation-delay: 0.3s;
 }
 </style>

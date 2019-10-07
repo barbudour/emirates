@@ -1,6 +1,6 @@
 <template>
 	<div class="intro">
-		<div class="intro__background" v-bind:style="{ 'background-image': 'url(' + image + ')' }"></div>
+		<div class="intro__background" :style="{ 'background-image': 'url('+require('../assets/img/'+image+'@2x.jpg')+')' }"></div>
 		<div class="container intro__content">
 			<div class="intro__subtitle">
 				<p v-html="subtitle"></p>

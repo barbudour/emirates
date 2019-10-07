@@ -146,7 +146,7 @@ export default {
   &:hover {
     .ya-share2 {
       width: vw(125);
-      // w vw(98)
+      height: initial;
       opacity: 1;
       visibility: visible;
       transition: .35s opacity, .35s visibility;
@@ -180,6 +180,7 @@ export default {
   }
   .ya-share2 {
     width: vw(0);
+    height: vw(0);
     opacity: 0;
     visibility: hidden;
     display: flex;

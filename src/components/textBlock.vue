@@ -1,9 +1,10 @@
 <template>
 	<div class="text">
 		<div class="container text__content">
-			<div class="text__item" v-for="(item, index) in text" :key="index">
+			<div :class="'text__item '+item.type" v-for="(item, index) in text" :key="index">
 				<p v-if="item.type === 't'" v-html="item.content"></p>
-				<img v-else-if="item.type === 'i'" :src="item.content" :srcset="item.content+' 2x'">
+				<img v-else-if="item.type === 'i' && !item.small" :src="require('../assets/img/'+item.content+'.jpg')" :srcset="require('../assets/img/'+item.content+'@2x.jpg')+' 2x'">
+				<!-- <img class="small" v-else-if="item.type === 'i' && item.small" :src="require('../assets/img/'+item.content+'.jpg')" :srcset="require('../assets/img/'+item.content+'@2x.jpg')+' 2x'"> -->
 			</div>
 		</div>
 	</div>
@@ -30,6 +31,7 @@ export default {
 	
 		p {
 			position: relative;
+			display: inline-block;
 			font-size: vw(18);
 			color: rgb(51, 51, 51);
 			line-height: 1.667;
@@ -39,15 +41,8 @@ export default {
 				margin: 0 0 vw(90);
 			}
 
-			img {
-				width: 100%;
-				max-width: 100%;
-				margin: 0 0;
-				display: block;
-
-				&:not(:last-child) {
-					margin: 0 0 vw(95);
-				}
+			> blockquote:first-child {
+				margin-top: 0!important;
 			}
 		}
 
@@ -57,6 +52,21 @@ export default {
 			font-weight: bold;
 			font-style: italic;
 			line-height: 1.333;
+		}
+	}
+
+	&__item {
+		img {
+			width: 100%;
+			max-width: 100%;
+			margin: 0 0;
+			display: block;
+		}
+		&.i:not(:last-child) {
+				margin-bottom: vw(95);
+		}
+		&.i:not(:first-child) {
+				margin-top: vw(95);
 		}
 	}
 }

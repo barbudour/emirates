@@ -8,6 +8,7 @@
 				<div class="facts__item-text" v-html="fact.text"></div>
 			</div>
 		</div>
+		<div class="facts__bg" :style="{ 'background-image': 'url('+require('../assets/img/'+factsBg+'@2x.jpg')+')' }"></div>
 	</div>
 </template>
 
@@ -17,7 +18,8 @@
 export default {
 	name: "facts",
 	props: {
-		facts: Array
+		facts: Array,
+		factsBg: String
 	}
 };
 </script>
@@ -27,14 +29,12 @@ export default {
 	position: relative;
 	background: #000000;
 
-	&::after {
-		content: '';
+	&__bg {
 		width: 100%;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		left: 0;
-		background: url('../assets/img/maldives-facts.jpg');
 		background-size: cover;
 		background-position: center;
 		opacity: 0.75;
