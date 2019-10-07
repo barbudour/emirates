@@ -70,11 +70,11 @@ let routes = [
     name: 'D2',
     component: () => import('./views/phuket.vue')
   },
-  // {
-  //   path: '/bali3',
-  //   name: 'D3',
-  //   component: () => import('./views/bali3.vue')
-  // },
+  {
+    path: '/bali3',
+    name: 'D3',
+    component: () => import('./views/bali3.vue')
+  },
   {
     path: '/colombia2',
     name: 'D4',
