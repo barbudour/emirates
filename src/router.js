@@ -75,11 +75,11 @@ let routes = [
   //   name: 'D3',
   //   component: () => import('./views/bali3.vue')
   // },
-  // {
-  //   path: '/colombia2',
-  //   name: 'D4',
-  //   component: () => import('./views/colombia.vue')
-  // },
+  {
+    path: '/colombia2',
+    name: 'D4',
+    component: () => import('./views/colombia2.vue')
+  },
   // {
   //   path: '/vietnam3',
   //   name: 'random',
