@@ -80,11 +80,11 @@ let routes = [
     name: 'D4',
     component: () => import('./views/colombia2.vue')
   },
-  // {
-  //   path: '/vietnam3',
-  //   name: 'random',
-  //   component: () => import('./views/vietnam3.vue')
-  // }
+  {
+    path: '/vietnam3',
+    name: 'random',
+    component: () => import('./views/vietnam3.vue')
+  }
 ];
 
 if (Object.keys(data.share.dynamic_shares).length > 0) {
