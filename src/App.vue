@@ -1,14 +1,18 @@
 <template>
   <div id="app">
+    <headBlock/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import headBlock from '@/components/headBlock.vue';
 import { on_load_mixin } from "./system/statistics";
 export default {
   mixins: [on_load_mixin],
-  components: {}
+  components: {
+    headBlock
+  }
 };
 </script>
 

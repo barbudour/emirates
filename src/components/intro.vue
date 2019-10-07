@@ -1,6 +1,6 @@
 <template>
 	<div class="intro">
-		<headBlock/>
+		<div class="intro__background" v-bind:style="{ 'background-image': 'url(' + image + ')' }"></div>
 		<div class="container intro__content">
 			<div class="intro__subtitle">
 				<p v-html="subtitle"></p>
@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import headBlock from '@/components/headBlock.vue';
 import Social from '@/components/Social.vue';
 
 // @ is an alias to /src
@@ -27,10 +26,9 @@ export default {
 		title: String,
 		subtitle: String,
 		lead: String,
-		img: String
+		image: String
 	},
 	components: {
-		headBlock,
 		Social
 	},
 	beforeCreate: function() {
@@ -64,21 +62,19 @@ export default {
 		z-index: 2;
 	}
 
-	&::after {
-		content: '';
+	> * {
+		z-index: 1;
+	}
+
+	&__background {
 		width: 100%;
 		height: 100%;
 		position: absolute;
 		top: 0;
 		left: 0;
-		background-image: url('../assets/img/maldives.jpg');
 		background-size: cover;
 		background-position: center;
 		opacity: 0.8;
-	}
-
-	> * {
-		z-index: 1;
 	}
 
 	&__subtitle {

@@ -129,7 +129,7 @@ export default {
 @import '../assets/styles/_responsive.scss';
 
 .social {
-  position: fixed;
+  position: absolute;
   bottom: vw(36);
   right: vw(39);
   height: vw(24);

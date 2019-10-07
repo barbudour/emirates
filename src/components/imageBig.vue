@@ -1,6 +1,6 @@
 <template>
 	<div class="image__big">
-		<img :src="image" alt="" :srcset="image+' 2x'">
+		<img :src="image.content" alt="" :srcset="image.content+' 2x'">
 	</div>
 </template>
 
@@ -9,10 +9,8 @@
 // @ is an alias to /src
 export default {
 	name: "imageBig",
-	data: function () {
-		return {
-			image: 'https://via.placeholder.com/1440x900',
-		}
+	props: {
+		image: Array
 	}
 };
 </script>

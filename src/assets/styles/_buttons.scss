@@ -2,7 +2,7 @@
 	position: relative;
 	display: inline-block;
 	text-decoration: none;
-	transition: all 0.2s ease-in-out;
+	// transition: all 0.2s ease-in-out;
 	cursor: pointer;
 
 	&__big {
@@ -20,5 +20,9 @@
 		border: 2px solid #ffffff;
 		color: #ffffff;
 		font-size: vw(14);
+	}
+
+	&__disable {
+		cursor: not-allowed;
 	}
 }

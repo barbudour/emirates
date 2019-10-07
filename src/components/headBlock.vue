@@ -22,6 +22,7 @@ export default {
 .header {
 	top: 0;
     width: 100vw;
-    position: absolute;
+	position: absolute;
+	z-index: 999;
 }
 </style>

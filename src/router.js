@@ -1,20 +1,90 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import data from '../data'
-import home from './views/home.vue'
-import maldives from './views/maldives.vue'
 
 Vue.use(Router)
 
 let routes = [
   {
     path: '/',
-    component: home
+    name: 'home',
+    component: () => import('./views/home.vue')
   },
   {
     path: '/maldives',
-    component: maldives
-  }
+    name: 'A1',
+    component: () => import('./views/maldives.vue')
+  },
+  {
+    path: '/bali',
+    name: 'A2',
+    component: () => import('./views/bali.vue')
+  },
+  // {
+  //   path: '/seychelles',
+  //   name: 'A3',
+  //   component: () => import('./views/seychelles.vue')
+  // },
+  // {
+  //   path: '/vietnam',
+  //   name: 'B1',
+  //   component: () => import('./views/vietnam.vue')
+  // },
+  // {
+  //   path: '/bali2',
+  //   name: 'B2',
+  //   component: () => import('./views/bali2.vue')
+  // },
+  // {
+  //   path: '/maldives2',
+  //   name: 'B3',
+  //   component: () => import('./views/maldives2.vue')
+  // },
+  // {
+  //   path: '/seychelles',
+  //   name: 'B4',
+  //   component: () => import('./views/seychelles2.vue')
+  // },
+  // {
+  //   path: '/dubai',
+  //   name: 'C1',
+  //   component: () => import('./views/dubai.vue')
+  // },
+  // {
+  //   path: '/colombia',
+  //   name: 'C2',
+  //   component: () => import('./views/colombia.vue')
+  // },
+  // {
+  //   path: '/maldives3',
+  //   name: 'C3',
+  //   component: () => import('./views/maldives3.vue')
+  // },
+  // {
+  //   path: '/vietnam2',
+  //   name: 'C4',
+  //   component: () => import('./views/vietnam2.vue')
+  // },
+  // {
+  //   path: '/phuket',
+  //   name: 'D2',
+  //   component: () => import('./views/phuket.vue')
+  // },
+  // {
+  //   path: '/bali3',
+  //   name: 'D3',
+  //   component: () => import('./views/bali3.vue')
+  // },
+  // {
+  //   path: '/colombia2',
+  //   name: 'D4',
+  //   component: () => import('./views/colombia.vue')
+  // },
+  // {
+  //   path: '/vietnam3',
+  //   name: 'random',
+  //   component: () => import('./views/vietnam3.vue')
+  // }
 ];
 
 if (Object.keys(data.share.dynamic_shares).length > 0) {

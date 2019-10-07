@@ -1,28 +1,38 @@
 <template>
 	<div class="search">
 		<div class="search__content">
-			<h1 class="search__title" v-if="!changeCategory" v-html="title"></h1>
-			<h1 class="search__title" v-else v-html="titleTypes"></h1>
-			<h2 class="search__lead" v-if="!changeCategory" v-html="lead"></h2>
-			<h2 class="search__lead" v-else v-html="leadTypes"></h2>
-			<div class="search__categories" v-if="!changeCategory">
-				<a class="search__category button" v-for="(category, index) in categories" :key="index" href="#">{{category.name}}</a>
-			</div>
-			<div class="search__categories" v-else>
-				<a class="search__category button" v-for="(type, index) in types" :key="index" href="#">{{type.name}}</a>
-			</div>
-			<div class="search__buttons">
-				<a class="button__big button" @click="changeCategory = !changeCategory" v-if="!changeCategory">{{buttonSearch}}</a>
-				<a class="button__big button" @click="changeCategory = !changeCategory" v-else>{{buttonFlight}}</a>
-				<a class="button__normal button">{{buttonRandom}}</a>
+			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOutUp" mode="out-in">
+				<h1 class="search__title animated" id="title" key="categorytitle" v-if="!changeCategory" v-html="title"></h1>
+				<h1 class="search__title animated"  key="typetitle" v-else v-html="titleTypes"></h1>
+			</transition-group>
+			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOutUp" mode="out-in">
+			<h2 class="search__lead animated" id="lead" key="leadcategory" v-if="!changeCategory" v-html="lead"></h2>
+			<h2 class="search__lead animated" key="leadtype" v-else v-html="leadTypes"></h2>
+			</transition-group>
+			<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOut" mode="out-in">
+				<div class="search__categories animated" id="categories" key="categories" v-if="!changeCategory">
+					<a class="search__category button category__first" @click="selectCategory" ref="category" v-for="(category, index) in categories" :category="category.key" v-bind:key="index">{{category.name}}</a>
+				</div>
+				<div class="search__categories animated" key="types" v-else>
+					<a class="search__category button category__second" @click="selectType" v-show="selectCategory !== type.ban" v-for="(type, index) in types" :type="type.key" v-bind:key="index">{{type.name}}</a>
+				</div>
+			</transition-group>
+			<div class="search__buttons" id="buttons">
+				<transition-group name="fade" enter-active-class="fadeInRight" leave-active-class="fadeOutLeft" mode="out-in">
+				<a class="button__big button button__disable animated" id="totypes" key="types" @click="toTypes" v-if="!changeCategory">{{buttonSearch}}</a>
+				<a class="button__big button button__disable animated" id="toflight" key="flight" @click="toFlight" v-else>{{buttonFlight}}</a>
+				</transition-group>
+				<a class="button__normal button" id="random" @click="toRandom">{{buttonRandom}}</a>
 			</div>
 		</div>
 		<Social/>
+		<video-bg :sources="['assets/video/emirates.mp4']"/>
 	</div>
 </template>
 
 <script>
 import Social from '@/components/Social.vue';
+import {TweenMax, Power2, TimelineMax} from "gsap/TweenMax";
 
 // @ is an alias to /src
 export default {
@@ -37,22 +47,90 @@ export default {
 			buttonFlight: 'Полетели!',
 			buttonRandom: 'Полететь наугад',
 			categories: [
-				{name: 'Свадьба'},
-				{name: 'Переезд'},
-				{name: 'Новая работа'},
-				{name: 'Просто хочу отдохнуть'}
+				{key: 'A', name: 'Свадьба'},
+				{key: 'B', name: 'Переезд'},
+				{key: 'C', name: 'Новая работа'},
+				{key: 'D', name: 'День рождения'}
 			],
 			types: [
-				{name: 'С семьей'},
-				{name: 'С друзьями'},
-				{name: 'В одиночку'},
-				{name: 'Со второй половинкой'}
+				{key: '1', name: 'С семьей', ban: 'D'},
+				{key: '2', name: 'С друзьями', ban: ''},
+				{key: '3', name: 'В одиночку', ban: 'A'},
+				{key: '4', name: 'Со второй половинкой', ban: ''}
 			],
+			selectedCategory: null,
 			changeCategory: false
 		}
 	},
 	components: {
 		Social
+	},
+	methods: {
+		selectCategory: function (event) {
+			var selected = event.target.getAttribute('category');
+			this.$store.state.options.reason = selected;
+			this.selectCategory = selected;
+			for (var item of document.querySelectorAll('.category__first')) {
+				item.classList.remove('active');
+			}
+			event.target.classList.add("active");
+			document.querySelector('#totypes').classList.remove("button__disable");
+		},
+		toTypes: function () {
+			if (this.$store.state.options.reason != null) {
+				this.changeCategory = !this.changeCategory;
+			} else {
+				return false;
+			}
+		},
+		enter: function (el, done) {
+				TweenMax.from(el, 0.3, {autoAlpha: 0, onComplete: done});
+		},
+		leave: function (el, done) {
+				TweenMax.to(el, 0.3, {autoAlpha: 0, onComplete: done});
+		},
+		selectType: function (event) {
+			var selected = event.target.getAttribute('type');
+			this.$store.state.options.who = selected;
+			for (var item of document.querySelectorAll('.category__second')) {
+				item.classList.remove('active');
+			}
+			event.target.classList.add("active");
+			document.querySelector('#toflight').classList.remove("button__disable");
+		},
+		toFlight: function () {
+			if (this.$store.state.options.reason != null && this.$store.state.options.who != null) {
+				var flightFinish = this.$store.state.options.reason + this.$store.state.options.who;
+				this.$router.push({ name: flightFinish});
+				this.$store.state.options.reason = null;
+				this.$store.state.options.who = null;
+			} else {
+				return false;
+			}
+		},
+		toRandom: function () {
+			this.$router.push({ name: 'random'});
+		}
+	},
+	mounted() {
+		var header = document.querySelector('.header'),
+			titleSearch = document.querySelector('#title'),
+			leadSearch = document.querySelector('#lead'),
+			categoriesSearch = document.querySelector('#categories'),
+			buttonsSearch = document.querySelector('#buttons'),
+			typesSearch = document.querySelector('#totypes'),
+			randomSearch = document.querySelector('#random');
+
+		var centerElementsDuration = 1.5;
+
+		var tlIntro = new TimelineMax();
+			tlIntro.from(header, 1.5, {autoAlpha: 0, ease: Power4.easeOut})
+					.from(titleSearch, centerElementsDuration, {autoAlpha: 0, y: '-30px', ease: Power4.easeOut}, 0.75)
+					.from(leadSearch, centerElementsDuration, {autoAlpha: 0, ease: Power4.easeOut}, 0.75)
+					.from(categoriesSearch, centerElementsDuration, {autoAlpha: 0, ease: Power4.easeOut}, 0.75)
+					.from(buttonsSearch, centerElementsDuration, {autoAlpha: 0, y: '30px', ease: Power4.easeOut}, 0.75)
+					// .from(typesSearch, centerElementsDuration, {autoAlpha: 0, y: '30px', ease: Power4.easeOut}, 0.75)
+					// .from(randomSearch, centerElementsDuration, {autoAlpha: 0, delay: 0.375, y: '30px', ease: Power4.easeOut}, 0.75)
 	}
 };
 </script>
@@ -104,8 +182,15 @@ export default {
 		color: #ffffff;
 		font-size: vw(16);
 		font-weight: 400;
+		transition: all 0.2s ease-in-out;
 
 		&:hover {
+			background: #ffffff;
+			border-color: #ffffff;
+			color: #d6181f;
+		}
+
+		&.active {
 			background: #ffffff;
 			border-color: #ffffff;
 			color: #d6181f;
@@ -117,9 +202,26 @@ export default {
 		flex-direction: column;
 		align-items: center;
 
-		> .button__big {
-			margin-bottom: vw(30);
+		> .button__normal {
+			margin-top: vw(30);
+		}
+
+		> span {
+			width: 100%;
+			text-align: center;
+
+			> a {
+				// opacity: 0;
+			}
+		}
+
+		> * {
+			transition: initial;
 		}
 	}
+}
+
+.fade-leave-active, .fade-leave-to, .fade-enter {
+	position: absolute;
 }
 </style>
