@@ -55,16 +55,16 @@ let routes = [
     name: 'C2',
     component: () => import('./views/colombia.vue')
   },
-  // {
-  //   path: '/maldives3',
-  //   name: 'C3',
-  //   component: () => import('./views/maldives3.vue')
-  // },
-  // {
-  //   path: '/vietnam2',
-  //   name: 'C4',
-  //   component: () => import('./views/vietnam2.vue')
-  // },
+  {
+    path: '/maldives3',
+    name: 'C3',
+    component: () => import('./views/maldives3.vue')
+  },
+  {
+    path: '/vietnam2',
+    name: 'C4',
+    component: () => import('./views/vietnam2.vue')
+  },
   // {
   //   path: '/phuket',
   //   name: 'D2',
