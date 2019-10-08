@@ -26,7 +26,10 @@
 			</div>
 		</div>
 		<Social/>
-		<video-bg :sources="['assets/video/emirates.mp4']"/>
+		<transition-group name="fade" enter-active-class="fadeIn" leave-active-class="fadeOut" mode="in-out">
+			<video-bg class="animated" v-if="!changeCategory" key="video1" :sources="[require('../assets/video/emirates.mp4')]" :img="require('../assets/img/video.jpg')"/>
+			<video-bg class="animated" v-else key="video2" :sources="[require('../assets/video/emirates2.mp4')]"/>
+		</transition-group>
 	</div>
 </template>
 
@@ -145,14 +148,15 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: rgba(37, 55, 75, 0.5);
-	background-image: url('../assets/img/search-bg.jpg');
+	background: #25374b;
+	// background-image: url('../assets/img/search-bg.jpg');
 	background-size: cover;
 	background-position: center;
 	overflow: hidden;
 
 	&__content {
 		max-width: vm(560);
+		z-index: 1;
 	}
 
 	&__title {
@@ -276,5 +280,17 @@ export default {
 
 .fade-enter {
 	animation-delay: 0.3s;
+}
+
+.VideoBg {
+	top: 0;
+	left: 0;
+	width: 100vw;
+    opacity: 0.5;
+    position: absolute;
+}
+
+.social {
+	z-index: 1;
 }
 </style>
