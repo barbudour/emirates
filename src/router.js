@@ -47,7 +47,7 @@ let routes = [
   },
   {
     path: '/dubai',
-    name: 'C3',
+    name: 'C1',
     component: () => import('./views/dubai.vue')
   },
   {
