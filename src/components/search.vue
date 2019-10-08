@@ -19,8 +19,8 @@
 			</transition-group>
 			<div class="search__buttons" id="buttons">
 				<transition-group name="fade" enter-active-class="fadeInRight" leave-active-class="fadeOutLeft">
-				<a class="button__big button button__disable animated" id="totypes" key="types" @click="toTypes" v-if="!changeCategory">{{buttonSearch}}</a>
-				<a class="button__big button button__disable animated" id="toflight" key="flight" @click="toFlight" v-else>{{buttonFlight}}</a>
+				<!-- <a class="button__big button button__disable animated" id="totypes" key="types" @click="toTypes" v-if="!changeCategory">{{buttonSearch}}</a> -->
+				<a class="button__big button button__disable animated" id="toflight" key="flight" @click="toFlight" v-show="changeCategory">{{buttonFlight}}</a>
 				</transition-group>
 				<a class="button__normal button" id="random" @click="toRandom">{{buttonRandom}}</a>
 			</div>
@@ -74,7 +74,8 @@ export default {
 				item.classList.remove('active');
 			}
 			event.target.classList.add("active");
-			document.querySelector('#totypes').classList.remove("button__disable");
+			// document.querySelector('#totypes').classList.remove("button__disable");
+			this.changeCategory = !this.changeCategory;
 		},
 		toTypes: function () {
 			if (this.$store.state.options.reason != null) {
