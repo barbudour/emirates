@@ -24,6 +24,10 @@ export default {
 		height: vw(720);
 		background-size: cover;
 		background-position: center;
+
+		@include mobile {
+			height: vm(360);
+		}
 	}
 }
 </style>

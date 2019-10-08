@@ -47,6 +47,10 @@ export default {
 		margin: auto;
 		padding: vw(115) 0 vw(120);
 		z-index: 1;
+
+		@include mobile {
+			padding: vm(100) 0 vm(95);
+		}
 	}
 
 	&__item {
@@ -55,12 +59,28 @@ export default {
 		align-items: center;
 		justify-content: space-between;
 
+		@include mobile {
+			padding: initial;
+			flex-direction: column;
+			justify-content: initial;
+			align-items: flex-start;
+		}
+
 		&:not(:last-child) {
 			margin: 0 0 vw(80);
+
+			@include mobile {
+				margin: 0 0 vm(100);
+			}
 		}
 
 		&-icon {
 			padding: 0 0 0 vw(80);
+			
+			@include mobile {
+				padding: 0 0 vm(50);
+			}
+
 			> img {
 				display: block;
 			}
@@ -71,13 +91,29 @@ export default {
 			font-size: vw(16);
 			color: rgb(255, 255, 255);
 			line-height: 1.5;
+
+			@include mobile {
+				max-width: initial;
+				font-size: vm(28);
+				line-height: 1.28;
+			}
 		}
 
 		&:nth-of-type(2n) {
 			flex-direction: row-reverse;
 
+			@include mobile {
+				flex-direction: column;
+				align-items: flex-end;
+
+			}
+
 			& div:first-child {
 				padding: 0 vw(80) 0 0;
+
+				@include mobile {
+					padding: 0 0 vm(50);
+				}
 			}
 
 			& div:last-child {

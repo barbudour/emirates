@@ -60,6 +60,10 @@ export default {
 		margin-left: -0.5px;
 		background: #ffffff;
 		z-index: 2;
+
+		@include mobile {
+			height: vmax(120);
+		}
 	}
 
 	> * {
@@ -84,6 +88,13 @@ export default {
 			line-height: 1.5;
 			margin: 0 auto vw(40);
 			max-width: vw(600);
+
+			@include mobile {
+				font-size: vm(24);
+				line-height: 1.25;
+				max-width: initial;
+				margin: 0 auto vm(70);
+			}
 		}
 	}
 
@@ -93,6 +104,11 @@ export default {
 			color: rgb(255, 255, 255);
 			text-transform: uppercase;
 			margin: 0 0 vw(40);
+
+			@include mobile {
+				font-size: vm(80);
+				margin: 0 0 vm(90);
+			}
 		}
 	}
 
@@ -102,6 +118,11 @@ export default {
 			color: rgb(255, 255, 255);
 			line-height: 1.417;
 			margin: 0;
+
+			@include mobile {
+				font-size: vm(28);
+				line-height: 1.28;
+			}
 		}
 	}
 }

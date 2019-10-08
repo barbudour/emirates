@@ -30,6 +30,10 @@ body {
 .container {
   width: 100%;
   max-width: vw(880);
+
+  @include mobile {
+    max-width: vm(560);
+  }
 }
 
 blockquote {
@@ -41,18 +45,34 @@ blockquote {
   // display: inline;
   margin: vw(40) 0 vw(34);
 
+  @include mobile {
+    font-size: vm(40);
+    line-height: 1.25;
+    margin: vm(100) 0 vm(90);
+  }
+
   &.quote {
     &__left {
       max-width: vw(470);
       float: left;
       margin: vw(40) vw(40) vw(34) vw(-80);
       // display: inline;
+
+      @include mobile {
+        max-width: initial;
+        margin: inherit;
+      }
     }
     &__right {
       max-width: vw(470);
       float: right;
       margin: vw(40) vw(-80) vw(34) vw(40);
       // display: inline;
+
+      @include mobile {
+        max-width: initial;
+        margin: inherit;
+      }
     }
   }
 }

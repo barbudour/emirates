@@ -26,6 +26,10 @@ export default {
 .text {
 	padding: vw(95) 0 vw(90);
 
+	@include mobile {
+		padding: vm(60) 0 vm(80);
+	}
+
 	&__content {
 		margin: auto;
 	
@@ -37,6 +41,11 @@ export default {
 			line-height: 1.667;
 			margin: 0 0;
 
+			@include mobile {
+				font-size: vm(28);
+				line-height: 1.28;
+			}
+
 			&:not(:last-child) {
 				margin: 0 0 vw(90);
 			}
@@ -44,14 +53,6 @@ export default {
 			> blockquote:first-child {
 				margin-top: 0!important;
 			}
-		}
-
-		blockquote {
-			font-size: vw(30);
-			color: rgb(51, 51, 51);
-			font-weight: bold;
-			font-style: italic;
-			line-height: 1.333;
 		}
 	}
 
@@ -64,9 +65,17 @@ export default {
 		}
 		&.i:not(:last-child) {
 				margin-bottom: vw(95);
+
+				@include mobile {
+					margin-bottom: vm(95);
+				}
 		}
 		&.i:not(:first-child) {
 				margin-top: vw(95);
+
+				@include mobile {
+					margin-top: vm(95);
+				}
 		}
 	}
 }

@@ -79,6 +79,12 @@ export default {
 			color: rgb(255, 255, 255);
 			line-height: 1.5;
 			margin: 0 0 vw(20);
+
+			@include mobile {
+				font-size: vm(50);
+				line-height: 1.2;
+				margin: 0 0 vm(30);
+			}
 		}
 	}
 
@@ -89,6 +95,13 @@ export default {
 			line-height: 1.625;
 			margin: 0 0 vw(50);
 			max-width: vw(680);
+
+			@include mobile {
+				font-size: vm(28);
+				line-height: 1.28;
+				margin: 0 0 vm(65);
+				max-width: initial;
+			}
 		}
 	}
 }

@@ -10,6 +10,10 @@
 	@return $value / $base * 100vw;
 }
 
+@function vmax($value, $base: 940) {
+	@return $value / $base * 100vmax;
+}
+
 @mixin retina {
 	// stylelint-disable-next-line media-feature-name-no-vendor-prefix
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
