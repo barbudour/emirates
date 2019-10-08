@@ -1,6 +1,6 @@
 <template>
 	<div class="end">
-		<emiratesLogo/>
+		<!-- <emiratesLogo/> -->
 		<div class="container end__content">
 			<div class="end__title">
 				<h2 v-html="title"></h2>
