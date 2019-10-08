@@ -1,5 +1,5 @@
 <template>
-	<div class="end">
+	<div class="section__item end">
 		<!-- <emiratesLogo/> -->
 		<div class="container end__content">
 			<div class="end__title">

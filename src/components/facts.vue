@@ -1,5 +1,5 @@
 <template>
-	<div class="facts">
+	<div class="section__item facts">
 		<div class="container facts__content">
 			<div class="facts__item" v-for="(fact, index) in facts" :key="index">
 				<div class="facts__item-icon">

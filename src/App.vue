@@ -76,5 +76,11 @@ blockquote {
     }
   }
 }
+
+.section {
+  &__item {
+    position: relative;
+  }
+}
 </style>
   

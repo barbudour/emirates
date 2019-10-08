@@ -1,5 +1,5 @@
 <template>
-	<div class="image__big" :style="{ 'background-image': 'url('+require('../assets/img/'+image+'@2x.jpg')+')', 'background-position': '50% '+position.length ? position : 50+'%' }">
+	<div class="section__item image__big" :style="{ 'background-image': 'url('+require('../assets/img/'+image+'@2x.jpg')+')', 'background-position': '50% '+position.length ? position : 50+'%' }">
 	</div>
 </template>
 

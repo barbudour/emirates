@@ -2,7 +2,7 @@
 	<div id="contentCountry">
 		<div id="content__item" v-for="(contentItem, index) in contentCountry" :key="index">
 			<textBlock v-if="contentItem.type === 'text'" :text="contentItem.inner"/>
-			<imageBig v-else-if="contentItem.type === 'image'" :image="contentItem.content"  :position="contentItem.position"/>
+			<imageBig class="section__item" v-else-if="contentItem.type === 'image'" :image="contentItem.content"  :position="contentItem.position"/>
 		</div>
 	</div>
 </template>

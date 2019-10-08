@@ -1,5 +1,5 @@
 <template>
-	<div class="intro">
+	<div class="section__item intro">
 		<div class="intro__background" :style="{ 'background-image': 'url('+require('../assets/img/'+image+'@2x.jpg')+')' }"></div>
 		<div class="container intro__content">
 			<div class="intro__subtitle">
