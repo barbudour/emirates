@@ -30,11 +30,11 @@ let routes = [
     name: 'B1',
     component: () => import('./views/vietnam.vue')
   },
-  // {
-  //   path: '/bali2',
-  //   name: 'B2',
-  //   component: () => import('./views/bali2.vue')
-  // },
+  {
+    path: '/bali2',
+    name: 'B2',
+    component: () => import('./views/bali2.vue')
+  },
   // {
   //   path: '/maldives2',
   //   name: 'B3',
