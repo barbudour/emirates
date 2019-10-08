@@ -138,10 +138,12 @@ export default {
   align-items: flex-start;
   justify-content: stretch;
   cursor: pointer;
-  // @media $mobile
-  //   h vm(28)
-  //   r vm(40)
-  //   b vm(46)
+
+  @include mobile {
+    height: vm(28);
+    right: vm(40);
+    bottom: vm(46)
+  }
   
   &:hover {
     .ya-share2 {
@@ -150,8 +152,10 @@ export default {
       opacity: 1;
       visibility: visible;
       transition: .35s opacity, .35s visibility;
-      // @media $mobile
-      //   w vm(175)
+      
+      @include mobile {
+        width: vm(175);
+      }
     }
   }
 
@@ -163,8 +167,11 @@ export default {
     width: vw(19);
     fill: white;
     transition: .35s opacity;
-    // @media $mobile
-    //   size vm(31) vm(28)
+
+    @include mobile {
+      width: vm(31);
+      height: vm(28);
+    }
     &:hover {
       opacity: .7;
     }
@@ -174,6 +181,11 @@ export default {
       justify-content: center;
       width: vw(24);
       height: vw(24);
+
+      @include mobile {
+        width: vm(31);
+        height: vm(28);
+      }
       // @media $mobile
       //   size vm(31) vm(28)
     }
@@ -186,14 +198,18 @@ export default {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    // @media $mobile
-    //   pr vm(7)
-    //   justify-content flex-end
+
+    @include mobile {
+      padding-right: vm(7);
+      justify-content: flex-end;
+    }
     &__item {
       .ya-share2__item {         
         margin-left: vw(3);
-        // @media $mobile
-        //   ml vm(1)
+
+        @include mobile {
+          margin-left: vm(1)
+        }
       }
     }
     &__link {
@@ -205,9 +221,11 @@ export default {
       transition: color 0.2s, .35s opacity;
       width: vw(18);
       height: vw(18);
-      // @media $mobile
-      //   size vm(28)
-      //   font-size vm(22)
+
+      @include mobile {
+        width: vm(28);
+        font-size: vm(22);
+      }
     }
     &__title {
       display: none;

@@ -33,6 +33,12 @@ export default {
 		top: 0;
 		right: vw(40);
 		width: vw(80);
+
+		@include mobile {
+			top: vm(-22);
+			right: vm(40);
+			width: vm(92);
+		}
 	}
 }
 </style>

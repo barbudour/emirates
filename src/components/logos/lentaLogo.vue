@@ -32,12 +32,22 @@ export default {
 		left: vw(40);
 		width: vw(100);
 		text-align: left;
+
+		@include mobile {
+			top: vm(40);
+			left: vm(40);
+			width: vm(123);
+		}
 	}
 
 	&__subtitle {
 		font-size: vw(10);
 		color: rgba(255, 255, 255, 0.6);
 		text-transform: uppercase;
+
+		@include mobile {
+			font-size: vm(12);
+		}
 	}
 }
 </style>

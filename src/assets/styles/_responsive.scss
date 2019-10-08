@@ -6,13 +6,19 @@
 	@return $value / $base * 100vh;
 }
 
-@function vmin($value, $base: 375) {
-	@return $value / $base * 100vmin;
+@function vm($value, $base: 640) {
+	@return $value / $base * 100vw;
 }
 
 @mixin retina {
 	// stylelint-disable-next-line media-feature-name-no-vendor-prefix
 	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (max-width: (414px)) {
 		@content;
 	}
 }

@@ -39,7 +39,7 @@ export default {
 	name: "search",
 	data: function () {
 		return {
-			title: 'Генератор новой жизни',
+			title: 'Генератор новой&nbsp;жизни',
 			titleTypes: '&nbsp;',
 			lead: 'Какой у вас повод для того, чтобы отправиться в путешествие?',
 			leadTypes: 'С кем вы отправитесь в путешествия?',
@@ -150,6 +150,10 @@ export default {
 	background-position: center;
 	overflow: hidden;
 
+	&__content {
+		max-width: vm(560);
+	}
+
 	&__title {
 		font-size: vw(50);
 		color: rgb(255, 255, 255);
@@ -157,6 +161,11 @@ export default {
 		text-align: center;
 		font-weight: 500;
 		margin: 0 0 vw(50);
+
+		@include mobile {
+			font-size: vm(50);
+			margin: 0 0 vm(25);
+		}
 	}
 
 	&__lead {
@@ -166,12 +175,23 @@ export default {
 		text-align: center;
 		font-weight: 500;
 		margin: 0 0 vw(25);
+
+		@include mobile {
+			font-size: vm(20);
+			margin: 0 0 vm(5);
+			line-height: 1.25;
+		}
 	}
 
 	&__categories {
 		display: flex;
 		justify-content: center;
 		margin-bottom: vw(40);
+
+		@include mobile {
+			margin-bottom: vm(40);
+			flex-wrap: wrap;
+		}
 	}
 
 	&__category {
@@ -184,6 +204,29 @@ export default {
 		font-size: vw(16);
 		font-weight: 400;
 		transition: all 0.2s ease-in-out;
+
+		@include mobile {
+			margin: vm(20) vm(20);
+			padding: vm(25);
+			border-radius: vm(5);
+			font-size: vm(24);
+
+			&:nth-child(1) {
+				order: 1;
+			}
+
+			&:nth-child(2) {
+				order: 4;
+			}
+
+			&:nth-child(3) {
+				order: 3;
+			}
+
+			&:nth-child(4) {
+				order: 2;
+			}
+		}
 
 		&:hover {
 			background: #ffffff;
@@ -205,6 +248,10 @@ export default {
 
 		> .button__normal {
 			margin-top: vw(30);
+
+			@include mobile {
+				margin-top: vm(25);
+			}
 		}
 
 		> span {
