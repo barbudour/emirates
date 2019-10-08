@@ -37,17 +37,17 @@ let routes = [
   },
   {
     path: '/maldives2',
-    name: 'B3',
+    name: 'B4',
     component: () => import('./views/maldives2.vue')
   },
   {
     path: '/seychelles2',
-    name: 'B4',
+    name: 'B3',
     component: () => import('./views/seychelles2.vue')
   },
   {
     path: '/dubai',
-    name: 'C1',
+    name: 'C3',
     component: () => import('./views/dubai.vue')
   },
   {
@@ -57,12 +57,12 @@ let routes = [
   },
   {
     path: '/maldives3',
-    name: 'C3',
+    name: 'C4',
     component: () => import('./views/maldives3.vue')
   },
   {
     path: '/vietnam2',
-    name: 'C4',
+    name: 'C3',
     component: () => import('./views/vietnam2.vue')
   },
   {
@@ -72,12 +72,12 @@ let routes = [
   },
   {
     path: '/bali3',
-    name: 'D3',
+    name: 'D4',
     component: () => import('./views/bali3.vue')
   },
   {
     path: '/colombia2',
-    name: 'D4',
+    name: 'D3',
     component: () => import('./views/colombia2.vue')
   },
   {
