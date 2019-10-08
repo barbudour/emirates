@@ -40,11 +40,11 @@ let routes = [
   //   name: 'B3',
   //   component: () => import('./views/maldives2.vue')
   // },
-  // {
-  //   path: '/seychelles2',
-  //   name: 'B4',
-  //   component: () => import('./views/seychelles2.vue')
-  // },
+  {
+    path: '/seychelles2',
+    name: 'B4',
+    component: () => import('./views/seychelles2.vue')
+  },
   {
     path: '/dubai',
     name: 'C1',
