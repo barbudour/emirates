@@ -21,6 +21,23 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import '@/assets/styles/_responsive.scss';
 
+.seychelles__surf {
+	float: right;
+	margin: 0 0 vw(80) vw(40);
+
+	@include mobile {
+		float: initial;
+		margin: initial;
+		max-width: 100%;
+	}
+}
+
+.seychelles__quote {
+	@include desktop {
+		margin-top: 0!important;
+	}
+}
 </style>

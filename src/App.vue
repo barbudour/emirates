@@ -60,7 +60,7 @@ blockquote {
 
       @include mobile {
         max-width: initial;
-        margin: inherit;
+        margin: vm(40) 0;
       }
     }
     &__right {
