@@ -21,6 +21,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import '@/assets/styles/_responsive.scss';
 
+.maldives3__quote {
+	@include desktop {
+		margin-top: 0!important;
+	}
+}
 </style>
