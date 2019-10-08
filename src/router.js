@@ -20,11 +20,11 @@ let routes = [
     name: 'A2',
     component: () => import('./views/bali.vue')
   },
-  // {
-  //   path: '/seychelles',
-  //   name: 'A3',
-  //   component: () => import('./views/seychelles.vue')
-  // },
+  {
+    path: '/seychelles',
+    name: 'A3',
+    component: () => import('./views/seychelles.vue')
+  },
   // {
   //   path: '/vietnam',
   //   name: 'B1',
@@ -41,7 +41,7 @@ let routes = [
   //   component: () => import('./views/maldives2.vue')
   // },
   // {
-  //   path: '/seychelles',
+  //   path: '/seychelles2',
   //   name: 'B4',
   //   component: () => import('./views/seychelles2.vue')
   // },
