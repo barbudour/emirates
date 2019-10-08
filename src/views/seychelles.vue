@@ -26,7 +26,7 @@ export default {
 
 .seychelles__surf {
 	float: right;
-	margin: 0 0 vw(80) vw(40);
+	margin: 0 vw(-40) vw(40) vw(40);
 
 	@include mobile {
 		float: initial;
