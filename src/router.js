@@ -35,11 +35,11 @@ let routes = [
     name: 'B2',
     component: () => import('./views/bali2.vue')
   },
-  // {
-  //   path: '/maldives2',
-  //   name: 'B3',
-  //   component: () => import('./views/maldives2.vue')
-  // },
+  {
+    path: '/maldives2',
+    name: 'B3',
+    component: () => import('./views/maldives2.vue')
+  },
   {
     path: '/seychelles2',
     name: 'B4',
