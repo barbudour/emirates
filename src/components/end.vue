@@ -1,6 +1,5 @@
 <template>
 	<div class="section__item end">
-		<!-- <emiratesLogo/> -->
 		<div class="container end__content">
 			<div class="end__title">
 				<h2 v-html="title"></h2>
@@ -16,7 +15,6 @@
 </template>
 
 <script>
-import emiratesLogo from '@/components/logos/emiratesLogo.vue';
 
 // @ is an alias to /src
 export default {
@@ -32,7 +30,6 @@ export default {
 		}
 	},
 	components: {
-		emiratesLogo
 	}
 };
 </script>

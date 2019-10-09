@@ -3,7 +3,7 @@
 		<div class="container facts__content">
 			<div class="facts__item" v-for="(fact, index) in facts" :key="index">
 				<div class="facts__item-icon">
-					<img :src="fact.icon" alt="" :srcset="fact.icon">
+					<img :src="require('../assets/img/'+fact.icon+'.png')" :srcset="require('../assets/img/'+fact.icon+'@2x.png')+' 2x'" alt="">
 				</div>
 				<div class="facts__item-text" v-html="fact.text"></div>
 			</div>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+// import iconSurf from '@/assets/img/surf.svg';
+
 
 // @ is an alias to /src
 export default {
@@ -20,6 +22,9 @@ export default {
 	props: {
 		facts: Array,
 		factsBg: String
+	},
+	components: {
+		// iconSurf
 	}
 };
 </script>
@@ -75,6 +80,8 @@ export default {
 		}
 
 		&-icon {
+			width: vw(80);
+			height: vw(80);
 			padding: 0 0 0 vw(80);
 			
 			@include mobile {
@@ -83,6 +90,13 @@ export default {
 
 			> img {
 				display: block;
+				max-width: 100%;
+				max-height: 100%;
+			}
+
+			> svg {
+				max-width: 100%;
+				max-height: 100%;
 			}
 		}
 
